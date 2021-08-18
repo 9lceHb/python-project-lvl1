@@ -9,6 +9,9 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
+colorama = "^0.4.4"
+prompt = "^0.4.1"
+requests = "^2.26.0"
 
 [tool.poetry.dev-dependencies]
 
