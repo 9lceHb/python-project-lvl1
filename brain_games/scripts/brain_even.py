@@ -35,3 +35,7 @@ def main():
         i += 1
     if i == 3 and result is True:
         print(f'Congratulations, {name}!')
+
+
+if __name__ == '__main__':
+    main()
