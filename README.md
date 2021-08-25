@@ -8,3 +8,5 @@
 [![lint](https://github.com/9lceHb/python-project-lvl1/actions/workflows/lint.yml/badge.svg)](https://github.com/9lceHb/python-project-lvl1/actions/workflows/lint.yml)
 
 https://asciinema.org/a/eHADOUmsDr0zrKlVBG1OTNBD9
+
+https://asciinema.org/a/5ZA2mEURA2G5GutRz5Sw4JYj1
