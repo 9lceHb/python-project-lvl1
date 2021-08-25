@@ -1,15 +1,28 @@
+#!/usr/bin/env python
 import prompt
 from random import randint
 
 
-def welcome_user(game_type):
+def common_divisor(a, b):
+    if a >= b:
+        divend = a
+        divr = b
+    else:
+        divend = b
+        divr = a
+    rest = divend % divr
+    while rest != 0:
+        divend = divr
+        divr = rest
+        rest = divend % divr
+    nod = divr
+    return nod
+
+
+def welcome_user():
     print('Welcome to the Brain Games!')
     name = prompt.string('May I have your name? ')
     print(f'Hello, {name}!')
-    if game_type == 'even':
-        print('Answer "yes" if the number is even, otherwise answer "no".')
-    elif game_type == 'calc':
-        print('What is the result of the expression?')
     return name
 
 
@@ -23,46 +36,23 @@ def make_oper():
         return '-'
 
 
-def make_ques_answ(game_type):
-    if game_type == 'even':
-        number = randint(1, 100)
-        ques = number
-        if number % 2 == 0:
-            correct_answer = 'yes'
-        else:
-            correct_answer = 'no'
-    elif game_type == 'calc':
-        num1 = randint(1, 100)
-        num2 = randint(1, 100)
-        oper = make_oper()
-        ques = f'{num1} {oper} {num2}'
-        if oper == '*':
-            correct_answer = str(num1 * num2)
-        elif oper == '+':
-            correct_answer = str(num1 + num2)
-        else:
-            correct_answer = str(num1 - num2)
-    return ques, correct_answer
-
-
-def start_game(game_type, name):
-    result = make_ques_answ(game_type)
-    print(f'Question: {result[0]}')
-    answer = prompt.string('Your answer:')
-    if answer == result[1]:
+def check_answ(ques_answ_dict, name):
+    i = 0
+    print(f'Question: {ques_answ_dict[i][0]}')
+    user_answer = prompt.string('Your answer:')
+    if user_answer == ques_answ_dict[i][1]:
         print('Correct!')
     else:
-        print(f"'{answer}' is wrong answer ;(. Correct answer was '{result[1]}'.\
-                \nLet's try again, {name}!")
-    return answer == result[1]
-
-
-def game_count(n, game_type):
-    name = welcome_user(game_type)
-    i = 1
-    is_answer_correc = start_game(game_type, name)
-    while i < n and is_answer_correc is True:
-        is_answer_correc = start_game(game_type, name)
+        print(f"'{user_answer}' is wrong answer ;(. Correct answer was\
+ '{ques_answ_dict[i][1]}'.\nLet's try again, {name}!")
+    while user_answer == ques_answ_dict[i][1] and i < len(ques_answ_dict) - 1:
         i += 1
-    if i == n and is_answer_correc is True:
+        print(f'Question: {ques_answ_dict[i][0]}')
+        user_answer = prompt.string('Your answer:')
+        if user_answer == ques_answ_dict[i][1]:
+            print('Correct!')
+        else:
+            print(f"'{user_answer}' is wrong answer ;(. Correct answer was\
+ '{ques_answ_dict[i][1]}'.\nLet's try again, {name}!")
+    if i == len(ques_answ_dict) - 1:
         print(f'Congratulations, {name}!')
