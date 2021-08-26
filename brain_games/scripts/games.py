@@ -36,6 +36,13 @@ def make_oper():
         return '-'
 
 
+def is_prime(x):
+    d = 2
+    while x % d != 0 and d * d <= x:
+        d += 1
+    return x % d != 0
+
+
 def check_answ(ques_answ_dict, name):
     i = 0
     print(f'Question: {ques_answ_dict[i][0]}')
