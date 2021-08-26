@@ -17,6 +17,8 @@ def make_ques_answ_dict(n):
         progr_list[progr_miss - 1] = '..'
         ques = str(progr_list).replace(", ", " ")
         ques = ques.replace("'", "")
+        ques = ques.replace("[", "")
+        ques = ques.replace("]", "")
         ques_answ_dict[i] = [ques, correct_answer]
     return ques_answ_dict
 
